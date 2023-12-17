@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click = "isHot = !isHot">切换天气</button>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+
+    vm= new Vue({
+        el: '#root',
+        data:{
+            isHot: true
+        },
+        computed:{
+            info(){
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        },
+        //当只需要handler配置项时，可以简写
+        /* watch:{
+            isHot(newValue, oldValue){
+                console.log('isHot被修改了', newValue, oldValue)
+            }
+        } */
+    }),
+    vm.$watch('isHot', function(oldValue, newValue){
+        console.log('isHot被修改了', oldValue, newValue)
+    })
+</script>
+</html>
