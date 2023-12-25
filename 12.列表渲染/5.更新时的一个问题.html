@@ -10,9 +10,9 @@
     <div id="root">
         <!-- 遍历数组 -->
         <h2>人员列表</h2>
-        <input type="text/javascript" v-model="keyWords" placeholder="请输入名字">
+        <button @click="updateMei">更新马冬梅的信息</button>
         <ul>
-            <li v-for="p in filPersons" :key="p.id">{{p.name}}-{{p.age}}-{{p.sex}}</li>
+            <li v-for="p in persons" :key="p.id">{{p.name}}-{{p.age}}-{{p.sex}}</li>
         </ul>
     </div>
 </body>
@@ -21,33 +21,21 @@
     vm= new Vue({
         el: '#root',
         data:{
-            keyWords: '',
             persons:[
                 {id:'001', name:'马冬梅', age:'18', sex:'女'},
                 {id:'002', name:'周冬雨', age:'23', sex:'女'},
                 {id:'003', name:'周杰伦', age:'19', sex:'男'},
                 {id:'004', name:'温兆伦', age:'19', sex:'男'},
-            ],
-            // filPersons:[]
+            ]
         },
-        //用watch实现
-        /* watch:{
-            keyWords:{
-                immediate: true,
-                handler(val){
-                    // console.log("keyWords被改了", val)
-                    this.filPersons = this.persons.filter((p)=>{
-                        return p.name.indexOf(val) !== -1;
-                    })
-                }
-            }
-        } */
+        methods:{
+            updateMei(){
+                //奏效
+                // this.persons[0].name= '马老师'
+                // this.persons[0].age= '50'
+                // this.persons[0].sex= '男'
 
-        computed:{
-            filPersons(){
-                return this.persons.filter((p)=>{
-                    return p.name.indexOf(this.keyWords) !== -1
-                })
+                this.persons[0] = {id:'001', name:'马老师', age:'50', sex:'男'}
             }
         }
     })
